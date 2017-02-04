@@ -7,7 +7,12 @@ include $(CONFIGFILE)
 .SUFFIXES: .o .c
 
 HDR =\
+	graffiti.h\
 	utf.h
+
+LIBGRAFFITI = libgraffiti.a
+LIBGRAFFITISRC =\
+	libgraffiti/getgraffito.c
 
 LIBUTF = libutf.a
 LIBUTFSRC =\
@@ -31,11 +36,16 @@ LIBUTFSRC =\
 	libutf/utf.c\
 	libutf/utftorunestr.c
 
+LIBGRAFFITIOBJ = $(LIBGRAFFITISRC:.c=.o)
 LIBUTFOBJ = $(LIBUTFSRC:.c=.o)
 
-LIB = $(LIBUTF)
+LIB = $(LIBGRAFFITI) $(LIBUTF)
 
 all: $(LIB)
+
+$(LIBGRAFFITI): $(LIBGRAFFITIOBJ)
+	$(AR) -rc $@ $?
+	$(AR) -s $@
 
 $(LIBUTF): $(LIBUTFOBJ)
 	$(AR) -rc $@ $?
