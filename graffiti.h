@@ -22,7 +22,8 @@
 enum graffitotype {
 	GRAF_END,         /* End of sequence */
 	GRAF_RUNE,        /* Rune */
-	GRAF_RUNE_INVAL,  /* Rune from invalid encoding (e.g. xC0 x80) */
+	GRAF_RUNE_INVAL,  /* Rune from invalid encoding (e.g. xC0 x80)
+			     or with invalid code point */
 	GRAF_ESC_SEQ,     /* Escape sequence */
 	GRAF_BYTE         /* A byte */
 };
@@ -34,4 +35,5 @@ typedef struct {
 	Rune rune;
 } Graffito;
 
+/* Returns NULL if more bytes are needed. Cannot fail. */
 char *getgraffito(char *str, size_t n, int final, Graffito *graf);
