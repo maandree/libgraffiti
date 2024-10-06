@@ -52,13 +52,12 @@ $(LIBUTF): $(LIBUTFOBJ)
 	$(AR) -s $@
 
 .o:
-	$(CC) $(LDFLAGS) -o $@ $< $(LIB)
+	$(CC) -o $@ $< $(LIB) $(LDFLAGS)
 
 .c.o:
-	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
+	$(CC) -o $@ -c $< $(CFLAGS) $(CPPFLAGS)
 
 clean:
-	-rm -f $(LIB)
+	-rm -f -- $(LIB)
 
-.PHONY:
-	all clean
+.PHONY: all clean

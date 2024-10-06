@@ -83,7 +83,6 @@ apc: sos: pm: dcs:
 	goto done;
 
 esc_y:
-	
 	graf->nbytes++, str++, n--;
 	if (n)
 		graf->nbytes++, str++, n--;
